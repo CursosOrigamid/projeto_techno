@@ -1,6 +1,6 @@
 [
     {
-        "id": "Notebook",
+        "id": "notebook",
         "nome": "Notebook",
         "preco": 2999,
         "img": "./api/products/notebook/notebook.jpg"
