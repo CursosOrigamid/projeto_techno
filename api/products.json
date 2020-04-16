@@ -1,0 +1,32 @@
+[
+    {
+        "id": "Notebook",
+        "nome": "Notebook",
+        "preco": 2999,
+        "img": "./api/products/notebook/notebook.jpg"
+    },
+    {
+        "id": "smartphone",
+        "nome": "Smartphone",
+        "preco": 1299,
+        "img": "./api/products/notebook/smartphone.jpg"
+    },
+    {
+        "id": "tablet",
+        "nome": "Tablet",
+        "preco": 899,
+        "img": "./api/products/notebook/tablet.jpg"
+    },
+    {
+        "id": "smartwatch",
+        "nome": "Smartwatch",
+        "preco": 899,
+        "img": "./api/products/notebook/smartwatch.jpg"
+    },
+    {
+        "id": "speaker",
+        "nome": "Speaker",
+        "preco": 899,
+        "img": "./api/products/notebook/speaker.jpg"
+    }    
+]
