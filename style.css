@@ -27,6 +27,7 @@ body{
 .products {
     max-width:900px;
     margin: 100px auto 0 auto;
+    cursor: pointer;
    
 }
 

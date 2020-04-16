@@ -1,7 +1,8 @@
 const app = new Vue({
     el: "#app",
     data:{
-        products: [],        
+        products: [], 
+        product: false       
     },
     filters: {
     signPrice(valor){
@@ -16,10 +17,17 @@ const app = new Vue({
             .then(r => {
                 this.products = r;
             })
-        }
+        },
+        callApiProduct(idProduct){
+            fetch(`api/products/${idProduct}/dados.json`)           
+             .then(r => r.json())
+             .then(r => {
+                 this.product = r;
+             })
+         }
     },
     created(){
-        this.callApiProducts()
+        this.callApiProducts();        
     }
 });
 
