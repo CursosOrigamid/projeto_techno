@@ -2,7 +2,7 @@ const app = new Vue({
     el: "#app",
     data:{
         products: [],        
-    },
+    },    
     methods: {
         callApiProducts(){
            fetch("api/products.json")
@@ -16,3 +16,4 @@ const app = new Vue({
         this.callApiProducts()
     }
 });
+
