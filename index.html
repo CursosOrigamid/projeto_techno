@@ -10,8 +10,28 @@
 </head>
 <body>
     <div id="app">   
-        <section class="modal">
-            {{ product }}
+        <section class="modal" v-if="product">
+            <div class="modal_container">
+                <div class="modal_img">
+                    <img :src="product.img" :alt="product.nome"/>
+                </div>
+                <div class="modal_dados">
+                    <span class="modal_preco">{{ product.preco }}</span>
+                    <h2 class="modal_titulo">{{ product.nome }}</h2>
+                    <p>{{ product.descricao }}</p>
+                    <button class="modal_btn">Adicionar Item </button>
+                </div>
+                <div class="avaliacoes">
+                    <h2 class="avaliacoes_subtitulo">Avaliações</h2>
+                    <ul>
+                        <li v-for="review in product.reviews" class="avaliacao">
+                            <p class="avaliacao_descricao">{{ review.descricao }}</p>
+                            </p> {{ review.descricao }} </p>
+                            <p> {{ review.nome }} | {{ review.estrelas }} estrelas </p>                            
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </section>
         <section class="products">
             <div v-for="item in products" @click="callApiProduct(item.id)" :key="item.id" class="product">
