@@ -25,9 +25,8 @@
                     <h2 class="avaliacoes_subtitulo">Avaliações</h2>
                     <ul>
                         <li v-for="review in product.reviews" class="avaliacao">
-                            <p class="avaliacao_descricao">{{ review.descricao }}</p>
-                            </p> {{ review.descricao }} </p>
-                            <p> {{ review.nome }} | {{ review.estrelas }} estrelas </p>                            
+                            <p class="avaliacao_descricao">{{ review.descricao }}</p>                          
+                            <p class="avalicao_usuario"> {{ review.nome }} | {{ review.estrelas }} estrelas </p>                            
                         </li>
                     </ul>
                 </div>
