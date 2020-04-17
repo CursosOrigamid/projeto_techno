@@ -54,3 +54,9 @@ body{
 .product_price{
     color:rgba(0,0,0,.5)
 }
+
+/* Modal */
+
+.modal{
+    background: #ffffff;
+}
