@@ -87,12 +87,24 @@ body{
     align-items: end;
     grid-gap: 50px;
     padding:50px 50px 50px 0;
+    animation: fadeIn .5s forwards;
+}
+
+@keyframes fadeIn{
+    from{
+        opacity: 0;
+        transform: translate3D(50px,0,0);
+    }
+    to{
+        opacity:1;   
+        transform: translate3D(0px,0,0);
+    }
 }
 
 .modal_img{
     grid-column:1;   
     box-shadow: 0px 3px 4px rgba(0,0,0,.1),
-                0px 4px 10px rgba(0,0,0,.2)
+                0px 4px 10px rgba(0,0,0,.2);
 }
 
 .modal_img img{
@@ -122,6 +134,22 @@ body{
 
 .modal_btn:active{
     background: #808080
+}
+
+.modal_fechar{
+    border-radius: 50%;
+    background: #ffffff;
+    border: 2px solid #000;
+    width:40px;
+    height:40px;    
+    position:absolute;
+    top:-10px;
+    right:-10px;
+    font-size:1rem;
+    box-shadow: 0px 3px 4px rgba(0,0,0,.1),
+                0px 4px 10px rgba(0,0,0,.2);
+    cursor: pointer;
+   
 }
 
 
