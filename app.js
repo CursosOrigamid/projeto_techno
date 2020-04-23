@@ -116,9 +116,19 @@ const app = new Vue({
                 this.alertActive = false;
             }, 1500);
 
-        }        
+        },       
+        router() {
+            const hash = document.location.hash;
+            if (hash)
+              this.callApiProduct(hash.replace("#", ""));
+          }               
     }, 
     watch:{
+        product(){
+            document.title = this.product.nome || "Techno";
+            const hash = this.product.id || "";
+            history.pushState(null,null,`#${hash}`);
+        },
         /* 
             Ele vai ficar de olho no carrinho e toda vez que modificar o valor
             ele vai salvar em localstore
@@ -136,7 +146,8 @@ const app = new Vue({
     },   
     created(){
         this.callApiProducts();
-        this.checkLocalStorage();                     
+        this.checkLocalStorage();
+        this.router();                    
     }
 });
 
