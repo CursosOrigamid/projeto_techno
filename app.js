@@ -4,6 +4,8 @@ const app = new Vue({
         products: [], 
         product: false,
         cart:[],
+        alertMessage: "",
+        alertActive: false,
     },
     filters: {
     signPrice(valor){
@@ -85,7 +87,9 @@ const app = new Vue({
             this.product.estoque--;
             /* Aqui vou desustrutar o meu código */
                 const {id, nome, preco } = this.product;                
-                this.cart.push({id, nome, preco });                
+                this.cart.push({id, nome, preco }); 
+                this.alert(`${nome} foi adicionado ao carrinho.`);
+                                          
         },
         removeItemCart(indexItemCart){
             /* 
@@ -95,7 +99,7 @@ const app = new Vue({
                 Primeiro argumento é a identificação da posição do array e segundo argumento
                 quantos eu quero remover, por isso coloquei 1, porque quero remover só 1 item.
             */
-            this.cart.splice(indexItemCart,1);
+            this.cart.splice(indexItemCart,1);            
         },
         checkLocalStorage(){
             if(window.localStorage.cart){
@@ -104,6 +108,14 @@ const app = new Vue({
                 */
                 this.cart = JSON.parse(window.localStorage.cart);
             }
+        },
+        alert(message){
+            this.alertMessage = message;
+            this.alertActive = true;
+            setTimeout(() => {
+                this.alertActive = false;
+            }, 1500);
+
         }        
     }, 
     watch:{
