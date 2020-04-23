@@ -12,7 +12,7 @@
     <div id="app"> 
         <header class="header">
             <img class="logo" src="/assets/techno.svg" alt="Tecnhno">
-            <div class="carrinho_menu">{{ cartTotal | signPrice }} | <!-- {{ (this.cart.length) }} -->
+            <div class="carrinho_menu">{{ cartTotal | signPrice }}               
                 <ul>
                     <li v-for="(itemCart, indexItemCart) in this.cart">
                         <p>{{ itemCart.nome }}</p>
@@ -40,7 +40,7 @@
                 <div class="modal_dados">
                     <!-- Interessante com click podemos fazer efeito de fechar o modal -->
                     <button @click="product = false" class="modal_fechar">X</button>
-                    <span class="modal_preco">{{ product.preco }}</span>
+                    <span class="modal_preco">{{ product.preco | signPrice }}</span>
                     <h2 class="modal_titulo">{{ product.nome }}</h2>
                     <p>{{ product.descricao }}</p>
                     <p><span> Estoque: {{ product.estoque }}</span> </p>                    
