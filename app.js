@@ -17,7 +17,9 @@ const app = new Vue({
             if(this.cart.length){
                 /* 
                     Essa parte estou percorrendo o array e inserindo a informação no item
-                    na parte do total += estou atribuindo os valore ao total e somando
+                    na parte do total += estou atribuindo os valore ao total e somando. 
+                    Não precisa usar o watch porque dentro da minha funcao já tem uma propriedade reativa, então
+                    torna turno reativo, ao modificar o meu valor ele vai atualizar lá.
                 */
                 this.cart.forEach(item => {
                     total += item.preco;                    
@@ -94,10 +96,35 @@ const app = new Vue({
                 quantos eu quero remover, por isso coloquei 1, porque quero remover só 1 item.
             */
             this.cart.splice(indexItemCart,1);
-        },        
-    },    
+        },
+        checkLocalStorage(){
+            if(window.localStorage.cart){
+                /* 
+                    usei aqui JSON.parse para transformar string em array
+                */
+                this.cart = JSON.parse(window.localStorage.cart);
+            }
+        }        
+    }, 
+    watch:{
+        /* 
+            Ele vai ficar de olho no carrinho e toda vez que modificar o valor
+            ele vai salvar em localstore
+        */
+       cart(){
+        /* 
+            Nesse formato ele não salva, porque é um objeto, e locaStorage salva em string
+                window.localStorage.cart = this.cart;
+            Para resolver vamos usar JSON.stringgify()  transformar objeto em  string ou qualquer
+            outra coisa ele vai transformar em string
+        */
+            window.localStorage.cart = JSON.stringify(this.cart);
+       }
+
+    },   
     created(){
-        this.callApiProducts();                     
+        this.callApiProducts();
+        this.checkLocalStorage();                     
     }
 });
 
