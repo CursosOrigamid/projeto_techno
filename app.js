@@ -6,10 +6,11 @@ const app = new Vue({
         cart:[],
         alertMessage: "",
         alertActive: false,
+        cartActive: false,
+        disabled: true,
     },
     filters: {
-    signPrice(valor){
-        console.log(valor);
+    signPrice(valor){        
         return  valor.toLocaleString("pt-BR", {style: "currency", currency: "BRL"});
         }
     },
@@ -68,28 +69,24 @@ const app = new Vue({
         closeModal({target, currentTarget}){
 
             /* Esse target pega as informações de onde cliquei exatamente */
-            console.log(target);
-            /* Esse currentTarge ele pega as infirmações div principal que compõe onde ele clicou */
-            console.log(currentTarget);
-
-            if(target === currentTarget){
-                this.product = false;
-            }
-           
-            
+            /* console.log(target); */
+            /* Esse currentTarge ele pega as informações div principal que compõe onde ele clicou */
+            /* console.log(currentTarget); */
+            if(target === currentTarget) this.product = false; 
            /* 
             Tem esse código que pegar as informações da div onde estou clicando 
             teste = event.explicitOriginalTarget;
-           */
-                  
+           */                  
+        },
+        clickOutCart({target, currentTarget}){            
+            if(target === currentTarget) this.cartActive = false;            
         },
         addItemCart(){
             this.product.estoque--;
             /* Aqui vou desustrutar o meu código */
                 const {id, nome, preco } = this.product;                
                 this.cart.push({id, nome, preco }); 
-                this.alert(`${nome} foi adicionado ao carrinho.`);
-                                          
+                this.alert(`${nome} foi adicionado ao carrinho.`);                                          
         },
         removeItemCart(indexItemCart){
             /* 
@@ -102,12 +99,10 @@ const app = new Vue({
             this.cart.splice(indexItemCart,1);            
         },
         checkLocalStorage(){
-            if(window.localStorage.cart){
+            if(window.localStorage.cart)this.cart = JSON.parse(window.localStorage.cart); 
                 /* 
                     usei aqui JSON.parse para transformar string em array
-                */
-                this.cart = JSON.parse(window.localStorage.cart);
-            }
+                */            
         },
         alert(message){
             this.alertMessage = message;
@@ -115,7 +110,6 @@ const app = new Vue({
             setTimeout(() => {
                 this.alertActive = false;
             }, 1500);
-
         },       
         router() {
             const hash = document.location.hash;
@@ -147,7 +141,8 @@ const app = new Vue({
     created(){
         this.callApiProducts();
         this.checkLocalStorage();
-        this.router();                    
+        this.router();   
+        console.log(this.cartActive);                 
     }
 });
 
