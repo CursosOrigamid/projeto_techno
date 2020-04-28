@@ -104,6 +104,27 @@ const app = new Vue({
                     usei aqui JSON.parse para transformar string em array
                 */            
         },
+        compareStock(){
+        /*
+            const items = this.cart.filter(item => {               
+                if(item.id == this.product.id){ return true}                    
+            });
+            this.product.estoque = this.product.estoque - items.length;
+        */
+        /*  Fazendo do formato desustrurar objeto
+            const items = this.cart.filter(({id}) => {
+                console.log(id);
+                if(id === this.product.id){
+                    return true
+                }
+            })
+            this.product.estoque = this.product.estoque - items.length;
+        */
+        /* Terceiro formato mais simples */
+            const items = this.cart.filter(({id}) => id == this.product.id)
+            /* this.product.estoque = this.product.estoque - items.length; */
+            this.product.estoque -= items.length;
+        },             
         alert(message){
             this.alertMessage = message;
             this.alertActive = true;
@@ -115,13 +136,15 @@ const app = new Vue({
             const hash = document.location.hash;
             if (hash)
               this.callApiProduct(hash.replace("#", ""));
-          }               
+          },                     
     }, 
     watch:{
         product(){
             document.title = this.product.nome || "Techno";
             const hash = this.product.id || "";
             history.pushState(null,null,`#${hash}`);
+            if(this.product){this.compareStock();} 
+             
         },
         /* 
             Ele vai ficar de olho no carrinho e toda vez que modificar o valor
@@ -142,7 +165,8 @@ const app = new Vue({
         this.callApiProducts();
         this.checkLocalStorage();
         this.router();   
-        console.log(this.cartActive);                 
+        console.log(this.cartActive);  
+                     
     }
 });
 
