@@ -20,7 +20,7 @@
         <section class="products">
             <div v-for="item in products" @click="openModal(item.id)" :key="item.id" class="product">
                 <img :src="item.img" :alt="item.nome" class="product_img">
-                <div class=product_info"">
+                <div class="product_info">
                     <span class="product_price">{{ item.preco | signPrice }}</span>
                     <h2 class="product_title">{{ item.nome }} </h2>
                 <div>
